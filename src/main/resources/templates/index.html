@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management</title>
+</head>
+<body>
+<h1>User Management</h1>
+
+<!-- Form to add a new user -->
+<form action="/add_user" method="post">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required>
+    <button type="submit">Add User</button>
+</form>
+
+<!-- List of users with delete and generate receipt options -->
+<h2>Users:</h2>
+<ul>
+    <li th:each="user : ${users}">
+        <!-- Display the username of the user object -->
+        <span th:text="${user.username}">Username</span>
+        <!-- Link to delete the user -->
+        <a th:href="@{/delete_user/{username}(username=${user.username})}">Delete</a>
+        <!-- Link to generate a receipt for the user -->
+        <a th:href="@{/generate_receipt/{username}(username=${user.username})}">Generate Receipt</a>
+    </li>
+</ul>
+</body>
+</html>
